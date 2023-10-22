@@ -42,7 +42,7 @@ const addBookHandler = (request, h) => {
   };
 
   books.push(newBook);
-  const isAdded = bookshelf.filter((book) => book.id === id).length > 0;
+  const isAdded = books.filter((book) => book.id === id).length > 0;
 
   if (isAdded) {
     const response = h.response({
