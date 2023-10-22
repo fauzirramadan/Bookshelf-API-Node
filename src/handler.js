@@ -64,10 +64,30 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-const getAllBookHandler = () => ({
-  status: 'success',
-  data: { books },
-});
+const getAllBookHandler = (request, h) => {
+  const { search } = request.query;
+
+  if (search !== undefined) {
+    const filteredBook = books.filter((book) => book.name.toLowerCase().includes(search.toLowerCase()));
+    const response = h.response({
+      status: 'success',
+      data: {
+        filteredBook,
+      },
+    });
+    response.code(200);
+    return response;
+  }
+
+  const response = h.response({
+    status: 'success',
+    data: {
+      books,
+    },
+  });
+  response.code(200);
+  return response;
+};
 
 const getBookByIdHandler = (request, h) => {
   const { id } = request.params;
