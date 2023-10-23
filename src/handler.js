@@ -121,7 +121,7 @@ const getBookByIdHandler = (request, h) => {
   if (book !== undefined) {
     const response = h.response({
       status: 'success',
-      data: { book },
+      data: book,
     });
     response.code(200);
     return response;
